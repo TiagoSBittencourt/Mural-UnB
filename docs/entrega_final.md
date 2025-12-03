@@ -54,6 +54,16 @@ Atendendo ao requisito de frontend estático e sem custos de hospedagem, o time 
 
 ---
 
+## Próximos passos
+
+### Oportunidades dinâmicas
+- Divulgação de processos seletivos e oportunidades, como o **Processo Trainee** da Orquestra.
+
+### Aumentar o escopo para UnB/Darcy
+- Expansão das atividades e iniciativas para alcançar mais estudantes e áreas do campus Darcy Ribeiro da UnB.
+
+---
+
 ## 📊 Métricas de Qualidade do Código
 
 Para garantir a sustentabilidade do projeto, adotamos rigorosos padrões de qualidade:
