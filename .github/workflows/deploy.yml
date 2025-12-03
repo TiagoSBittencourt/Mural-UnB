@@ -1,49 +1,40 @@
-name: Deploy Projeto para GitHub Pages
+name: Deploy MkDocs - GitHub Pages
 
 on:
   push:
     branches:
-      - main # O workflow roda quando há um push para o branch 'main'
+      - main
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
-  build-and-deploy:
-    # Permissões necessárias para que a action de deploy funcione
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
-
-    runs-on: ubuntu-latest # O ambiente onde o job será executado
-
-    defaults:
-      run:
-        working-directory: ./site # Define a pasta 'site' como diretório de trabalho padrão
+  deploy:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: 📦 Checkout do Repositório
+      - name: 📦 Checkout do repositório
         uses: actions/checkout@v4
 
-      - name: ⚙️ Configurar Node.js
-        uses: actions/setup-node@v4
+      - name: 🐍 Instalar Python
+        uses: actions/setup-python@v5
         with:
-          node-version: "20" # Use a versão do Node.js que seu projeto utiliza
-          cache: "npm" # Habilita o cache de dependências do npm
-          cache-dependency-path: ./site/package-lock.json
+          python-version: "3.11"
 
-      - name: ⬇️ Instalar Dependências
-        run: npm ci
+      - name: 📚 Instalar MkDocs + Tema
+        run: |
+          pip install mkdocs
+          pip install mkdocs-material  # Remova se não usar
 
-      - name: 🏗️ Fazer Build do Projeto
-        # Este comando irá compilar seu projeto React/TypeScript.
-        # Certifique-se de que seu 'package.json' na pasta 'site' tenha um script 'build'.
-        run: npm run build
+      - name: 🏗️ Build da documentação
+        run: mkdocs build --clean
 
       - name: 🚀 Deploy para GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} # Token fornecido automaticamente pelo GitHub
-          publish_dir:
-            ./site/dist # O diretório onde a build de produção (os arquivos estáticos) está.
-            # Ajuste para a sua configuração (ex: ./build, ./dist, etc.)
-          publish_branch: gh-pages # A branch que o GitHub Pages usará para servir o site
-          force_orphan: true # Cria um novo histórico para o branch de deploy
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site        # Pasta gerada pelo MkDocs
+          publish_branch: gh-pages
+          force_orphan: true
