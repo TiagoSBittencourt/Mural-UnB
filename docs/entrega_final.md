@@ -2,27 +2,13 @@
 
 Esta seção detalha o estado final do produto **Mural UnB**, consolidando as funcionalidades entregues, as métricas de qualidade alcançadas e as notas de lançamento da versão 1.0.
 
-## Resumo das Entregas
+## 🏆 Resumo das Entregas
 
 O projeto atingiu seu objetivo principal de centralizar e democratizar o acesso às oportunidades acadêmicas da FGA. A solução final é composta por uma arquitetura desacoplada que garante alta disponibilidade e facilidade de manutenção.
 
-### Principais Entregas Técnicas
-
-1.  **Pipeline de Dados Automatizada (ETL):**
-    * Desenvolvimento de scripts em Python robustos para extração de dados de PDFs não estruturados (Editais e Portfólios).
-    * Implementação de **Web Crawler** inteligente para busca e download automático de imagens dos laboratórios, com sistema de *fallback* (placeholders categorizados) para garantir a consistência visual.
-    
-2.  **Enriquecimento com Inteligência Artificial:**
-    * Integração com a API do **Google Gemini** para processamento de linguagem natural.
-    * Geração automática de *embeddings* e tags semânticas, permitindo um sistema de recomendação e busca muito mais eficiente do que a simples palavra-chave.
-
-3.  **Interface do Usuário (Frontend):**
-    * Aplicação React moderna e responsiva, hospedada via GitHub Pages.
-    * Design focado na experiência do aluno ("Feed de Oportunidades").
-
 ---
 
-## Validação do Escopo Planejado
+## ✅ Validação do Escopo Planejado
 
 Abaixo, apresentamos a matriz de rastreabilidade entre o que foi planejado no início do semestre e o que foi efetivamente entregue na Release Final.
 
@@ -38,30 +24,37 @@ Abaixo, apresentamos a matriz de rastreabilidade entre o que foi planejado no in
 
 ---
 
-## Release Notes (v1.0.0)
+## 📦 Release Notes - Mural UnB (v1.0)
 
-### Novas Funcionalidades (Features)
+**Data de lançamento:** 02/12/2025
+**Link para o Site (Deploy):** [muralunb.com.br](https://muralunb.com.br)
 
-* **Crawler de Imagens Avançado:** Implementação de lógica de "caça" a imagens (Ouro/Prata/Bronze) para encontrar a melhor foto representativa de cada laboratório na web.
-* **Smart Fallback:** Sistema que atribui imagens genéricas categorizadas (ex: Software, Energia, Eletrônica) quando nenhuma imagem oficial é encontrada.
-* **Embeddings Semânticos:** Geração de vetores matemáticos para descrição dos laboratórios, melhorando a precisão da busca.
-* **Extração de PDFs:** Scripts otimizados para leitura dos portfólios oficiais da UnB (Infraestrutura e EJs).
+### 📔 O que foi feito?
 
-### Qualidade e Infraestrutura
+#### 📌 Pipeline de Dados (ETL)
+O time desenvolveu um **pipeline completo de dados em Python**, responsável por extrair informações (texto, imagens e links) de **PDFs oficiais** disponibilizados pela DPI da UnB.
+Esses dados são transformados e carregados em um banco de dados no formato JSON, compondo um fluxo ETL robusto para alimentar o sistema.
 
-* **Cobertura de Testes Elevada:** Atingimos **~90% de cobertura de código** nos scripts críticos do backend (`extrair_labs_fga.py`, `labs_pdf.py`, pipelines de IA), utilizando `pytest` e `pytest-mock` para isolar dependências externas.
-* **Integração Contínua (CI):** Pipeline do GitHub Actions configurada para bloquear PRs que não passem nos testes ou no linter (`pylint`).
-* **Refatoração de Código:** Modularização dos scripts Python para permitir testabilidade e manutenção (padrão `if __name__ == "__main__":`).
+#### 📌 Workflows de Extração e Automação
+Foram implementados **workflows** para gerenciar e agendar a extração de dados, garantindo que o processo ocorra de forma automatizada, controlada e escalável.
 
-### Correções de Bugs (Fixes)
+#### 📌 CI/CD e Boas Práticas de Engenharia
+O time implementou **pipelines de CI/CD** seguindo melhores práticas de engenharia de software, incluindo:
+* Linting
+* Testes unitários com TDD
+* Cobertura de testes próxima de 90%
 
-* Correção de erro de importação (`urllib`) que impedia o download de certas imagens.
-* Ajuste na *blacklist* do crawler para ignorar logos genéricos da UnB, fotos de perfil de professores e grades curriculares.
-* Correção na codificação de caracteres ao gerar arquivos JSON para o frontend.
+Essas práticas garantem consistência, segurança e qualidade contínua no desenvolvimento.
+
+#### 📌 Front-end Estático (React + Tailwind)
+Atendendo ao requisito de frontend estático e sem custos de hospedagem, o time construiu a interface utilizando:
+* React
+* **TailwindCSS** para estilização
+* Deploy gratuito via GitHub Pages, com **domínio customizado** (muralunb.com.br).
 
 ---
 
-## Métricas de Qualidade do Código
+## 📊 Métricas de Qualidade do Código
 
 Para garantir a sustentabilidade do projeto, adotamos rigorosos padrões de qualidade:
 
