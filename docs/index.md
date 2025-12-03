@@ -108,6 +108,24 @@ O **Mural UnB** surge como resposta a esse problema, oferecendo **eficiência, t
 
 ---
 
+## Manual de instalção
+
+```bash
+# 1. Clone o repositório
+git clone https://github.com/unb-mds/2025-2-Mural-UnB.git
+
+# 2. Configuração do Backend
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# 3. Configuração do Frontend
+cd site
+npm install
+npm run dev
+```
+
+
 
 
  
